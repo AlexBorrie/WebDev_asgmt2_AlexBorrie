@@ -14,6 +14,9 @@ class Semester(models.Model):
     year = models.IntegerField()
     semester = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.semester
+
 class Lecturer(models.Model):
     id = models.AutoField(primary_key=True)
     firstName = models.CharField(max_length=100)
@@ -21,6 +24,7 @@ class Lecturer(models.Model):
     email = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     DOB = models.DateField()
+
 
 
 class Student(models.Model):
@@ -38,6 +42,9 @@ class Class(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     lecturer = models.ForeignKey(Lecturer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.number
 
 class StudentEnrollment(models.Model):
     studentID = models.ForeignKey(Student, on_delete=models.CASCADE)
