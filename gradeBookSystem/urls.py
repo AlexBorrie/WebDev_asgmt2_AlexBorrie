@@ -1,5 +1,9 @@
+from django.db.models import Index
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+
+from gradeBookSystem.viewsets import ClassViewSet, CourseViewSet, StudentViewSet, StudentEnrollmentViewSet, \
+    LecturerViewSet, SemesterViewSet
 
 router = DefaultRouter()
 router.register('classes', ClassViewSet, basename='classes')
@@ -10,5 +14,7 @@ router.register('lecturers', LecturerViewSet, basename='lecturers')
 router.register('semesters', SemesterViewSet, basename='semesters')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', Index),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

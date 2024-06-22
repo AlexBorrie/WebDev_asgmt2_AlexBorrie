@@ -25,6 +25,8 @@ class Lecturer(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     DOB = models.DateField()
 
+    def __str__(self):
+        return self.firstName + " " + self.lastName
 
 
 class Student(models.Model):
@@ -35,6 +37,9 @@ class Student(models.Model):
     DOB = models.DateField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.firstName + " " + self.lastName
 
 class Class(models.Model):
     id = models.AutoField(primary_key=True)
